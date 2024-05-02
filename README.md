@@ -8,3 +8,5 @@ Rust nutzt das Prinzip der Ownership von Objekten zur Speicherverwaltung. Insbes
 In der folgenden Grafik ist zu erkennen das Pointer s1 ungültig wird, sobald Pointer s2 auf das selbe Objekt verweist.
 ![alt text](images/Ownership.svg "Changing Ownership of String Object")
 Quelle: https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html
+
+# Aufgaben

@@ -5,16 +5,18 @@ fn main(){
     println!("x:{} y:{}", x, y);
 
     // s1 ist Pointer zu in Heap angelegtem String Object
-    let s1 = String::from("String1"); // s1 -> "Hello World"    
+    let s1 = String::from("String1"); // s1 -> "String1"    
     println!("s1 -> {}", s1);
 
 
     let s2 = s1; // s2 -> "String1" s1 ungültig
     // Ownership des Heap Speicherbereichs wurde auf s2 übertragen
-    // C++
-    // string* s1 = "String1";
-    // string* s2 = s1;
-    // s1 = nullptr;
+    /*
+    Vergleich C++:
+    string* s1 =  new string("String1");
+    string* s2 = s1;
+    s1 = nullptr;
+     */
     
     let s2_clone = s2.clone(); // Kopie des Speicherbereichs von "Hello World!" wird angelegt
     println!("s2 -> {}, s2_clone -> {}", s2, s2_clone);
