@@ -21,8 +21,8 @@ fn main(){
     let s2_clone = s2.clone(); // Kopie des Speicherbereichs von "Hello World!" wird angelegt
     println!("s2 -> {}, s2_clone -> {}", s2, s2_clone);
 
-    take_ownership(s2); // Ownership wird an Methode übertragen
-    // println!("s2-> {}", s2); // Funktioniert nicht da s2 nicht mehr Owner ist
+    take_ownership(&s2); // Ownership wird an Methode übertragen
+    println!("s2-> {}", s2); // Funktioniert nicht da s2 nicht mehr Owner ist
    
     let s3 = take_ownership_and_give_back(s2_clone);
     println!("s3 -> {}", s3);
@@ -32,6 +32,10 @@ fn main(){
 fn take_ownership(string: String){ // 
     println!("take_ownership string -> {}", string);
 } // string Variable out of scope --> Speicher wird freigegeben
+
+fn borrow_value(string: &String){
+    println!("borrowed value -> {}", string);
+} // Referenz wird übergeben --> Speicher wird nicht freigegeben
 
 fn take_ownership_and_give_back(string: String) -> String {
     println!("take_ownership_and_give_back string -> {}", string);
