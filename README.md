@@ -11,10 +11,24 @@ In der folgenden Grafik ist zu erkennen das Pointer s1 ungültig wird, sobald Po
 
 Quelle: https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html
 
-Nach dem ein Wert ver
+### Simples Beispiel
+
+![Move Semantik Code Beispiel](images/image_move_semantik.png)
+Speicher im Heap besitzt immer einen sogenannten Besitzer, in der Regel ist dieser ein Pointer auf das entsprechende Objekt (vgl. Zeile 8). Sobald ein weiterer Pointer auf das Objekt zeigt ist dieser der neue Besitzer des Objekts und der ursprüngliche Pointer ist nicht mehr gültig (vgl. Zeile 12). Falls das Objekt kopiert werden soll so muss dies explizit angegeben werden (vgl. Zeile 21).
+
+### Beispiel mit Methoden
+
+![Move Semantik mit Methoden](images/image_move_methods.png)
+Sollten solche Objekte an Methoden übergeben werden, so ist der neue Besitzer des Objekts ebenfalls die Methode (vgl. Zeile 11). Nur falls die Methode das Objekt beziehungsweise den Pointer auf das Objekt wieder zurückgibt, wird das Objekt nicht aus dem Speicher entfernt (vgl. Zeile 14).
+
+## Borrow Semantik
+
+![Borrow Semantik](images/image_borrow.png)
+Mithilfe der Borrow Semantik ist es auch in Rust möglich mehere Pointer auf das selbe Objekt verweisen zu lassen. Dies ist wie im obigen Code Beispiel zu sehen sowohl mit neuen Variblen als auch bei der Übergabe an Methoden möglich.
+
 
 # Error Meldungen
-<img src="images/image.png">
+<img src="images/image_error.png">
 Der Rust Compiler erkennt selbständig, dass hier versucht wird auf einen Pointer zuzugreifen, der aufgrund der Move-Semantik nicht mehr gültig ist. Es wird angegeben, an welcher Stelle im Quellcode der Pointer ungültig wird, außerdem wird ein möglicher Lösungvorschlag zurückgegeben. 
 
 # Aufgaben

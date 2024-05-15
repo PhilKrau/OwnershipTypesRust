@@ -1,9 +1,4 @@
 fn main(){
-    let x = 5; // x = 5
-    let y = x; // y = 5
-    // Speicher im Stack wird kopiert
-    println!("x:{} y:{}", x, y);
-
     // s1 ist Pointer zu in Heap angelegtem String Object
     let s1 = String::from("String1"); // s1 -> "String1"    
     println!("s1 -> {}", s1);
