@@ -6,6 +6,9 @@ fn main(){
     borrow_value(&s1);
 
     println!("s1 after method call -> {}", s1);
+
+    let s2 = &s1; // s2 ist NICHT Besitzer des Objekts, verweist aber darauf
+    println!("s1 -> {}, s2 -> {}", s1, s2);
 } // Stack wird freigegeben. Speicher auf den s2 und s3 zeigen wird freigegeben
 
 fn borrow_value(string: &String){
