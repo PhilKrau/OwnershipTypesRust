@@ -24,13 +24,6 @@ Speicher im Heap besitzt immer einen sogenannten Besitzer, in der Regel ist dies
 Sollten solche Objekte an Methoden übergeben werden, so ist der neue Besitzer des Objekts ebenfalls die Methode (vgl. Zeile 11). Nur falls die Methode das Objekt beziehungsweise den Pointer auf das Objekt wieder zurückgibt, wird das Objekt nicht aus dem Speicher entfernt (vgl. Zeile 14).
 
 ## Borrow Semantik
-### nicht veränderbare Referenz
-
-![Borrow Semantik](images/image_borrow.png)
-
-Mithilfe der Borrow Semantik ist es auch in Rust möglich mehere Pointer auf das selbe Objekt verweisen zu lassen. Dies ist wie im obigen Code Beispiel zu sehen sowohl mit neuen Variblen als auch bei der Übergabe an Methoden möglich.
-
-
 
 <img src="images/Borrowing.svg" width = "400" height="300">
 
@@ -48,6 +41,12 @@ fn calculate_length(s: &String) -> usize {
 Quelle: https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html
 
 Wie in dem Beispiel zu sehen ist verweist bei die Referenz bei der Borrow-Semantik lediglich auf den eigentlichen Besitzer des Objekts
+
+### nicht veränderbare Referenz
+
+![Borrow Semantik](images/image_borrow.png)
+
+Mithilfe der Borrow Semantik ist es auch in Rust möglich mehere Pointer auf das selbe Objekt verweisen zu lassen. Dies ist wie im obigen Code Beispiel zu sehen sowohl mit neuen Variblen als auch bei der Übergabe an Methoden möglich.
 
 ### veränderbare Referenz
 ![Mutable Borrow Semantik](images/mut_borrow.png)
