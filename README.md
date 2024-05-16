@@ -30,10 +30,35 @@ Sollten solche Objekte an Methoden übergeben werden, so ist der neue Besitzer d
 Mithilfe der Borrow Semantik ist es auch in Rust möglich mehere Pointer auf das selbe Objekt verweisen zu lassen. Dies ist wie im obigen Code Beispiel zu sehen sowohl mit neuen Variblen als auch bei der Übergabe an Methoden möglich.
 
 
+
+<img src="images/Borrowing.svg" width = "400" height="300">
+
+```
+fn main(){
+    let s1 = String::from("hello");
+    let len = calculate_length(&s1);
+} // s1 goes out of scope and the String object is deleted
+
+fn calculate_length(s: &String) -> usize {
+    s.len()
+} // s goes out of scope but since it has no ownership the object is not deleted
+```
+
+Quelle: https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html
+
+Wie in dem Beispiel zu sehen ist verweist bei die Referenz bei der Borrow-Semantik lediglich auf den eigentlichen Besitzer des Objekts
+
+
 # Error Meldungen
+## Zugriff auf ungültigen Pointer
 ![Error Message](images/image_error.png)
 
 Der Rust Compiler erkennt selbständig, dass hier versucht wird auf einen Pointer zuzugreifen, der aufgrund der Move-Semantik nicht mehr gültig ist. Es wird angegeben, an welcher Stelle im Quellcode der Pointer ungültig wird, außerdem wird ein möglicher Lösungvorschlag zurückgegeben. 
+
+## Doppelte Mutable Referenz
+![Double mutable Error](images/double_mutable.png)
+
+In Rust ist immer nur maximal eine veränderbare Referenz auf ein Objekt zugelassen, um sogenannte Race-Conditions zu vermeiden. Folglich führt ein Zugriff auf die Variable "r1" nachdem eine zweite mutable reference angelegt wurde zu einem Fehler.
 
 # Aufgaben
 - Warum werden primitive Typen kopiert ? --> feste größe im Speicher
