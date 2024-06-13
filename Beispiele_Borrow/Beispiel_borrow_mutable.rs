@@ -5,11 +5,14 @@ fn main(){
     change(r1);
     printout(r1);
     
-    let r2 = &mut s;
-    change(r2);
-    printout(r2);
+    if(true){
+        let r2 = &mut s;
+        change(r2);
+        printout(r2);
+    }
 
-    // printout(r1); // doesn't work because of second mutable borrow
+
+    //printout(r1); // doesn't work because of second mutable borrow
 }
 
 fn change(string: &mut String){
