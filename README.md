@@ -64,19 +64,16 @@ Der Rust Compiler erkennt selbständig, dass hier versucht wird auf einen Pointe
 
 In Rust ist immer nur maximal eine veränderbare Referenz auf ein Objekt zugelassen, um sogenannte Race-Conditions zu vermeiden. Folglich führt ein Zugriff auf die Variable "r1" nachdem eine zweite mutable reference angelegt wurde zu einem Fehler.
 
-# Aufgaben
-- Warum werden primitive Typen kopiert ? --> feste größe im Speicher
-- Lesezugriffe für nicht- owner --> Borrow Semantik (static reference & mutable reference)
-- Allgemein Vergleich Move- Copy- Borrow-Semantik
-- Beispiel in mehrere kleine (Anwendungs-)beispiele unterteilen
+# Die Grenzen des Rust compilers
+## Unerreichbarer Code
+Der Folgende Code kompiliert nicht, da der Rust-Compiler nicht selbständig erkennt, dass ein Teil des Quellcodes niemals ausgeführt wird. Der Rust-Compiler untersucht den Code lediglich Zeile für Zeile und meldet deshalb einen Speicherfehler, der zur Laufzeit jedoch nie auftreten wird.
+![Unreachable Code](https://github.com/PhilKrau/OwnershipTypesRust/assets/72097023/6eef900a-ebea-42fc-8964-9065b515aa17)
 
-- Vergleich C++ 
-    - Code zeigen
-    - C++ Runtime <--> Rust Compile-Time
+## Stack Overflow durch zyklische Referenzen
+Eine Möglichkeit einen Speicherfehler in Rust zu erzeugen, ist das verwenden zyklischer Referenzen. In dem Beispiel ![reference_cycles.rs](Beispiele_Speicherfehler/reference_cycles.rs) ist Code zu finden der mithilfe zyklischer Referenzen einen Stack-Overflow zur Laufzeit verursacht. In dem Beispiel werden zwei Nodes einer linked-List erzeugt, die auf die jeweils andere verweisen. Gibt man sich nun den Nachfolger des ersten Elements aus, so verweisen die beiden Objekte solange gegenseitig aufeinander, bis der Stack voll ist und das Programm abstürzt.
 
-- Error Meldungen vorstellen
-    - Typfehlermeldungen (wegen Speicherfehler)
-    - Evtl noch Tool(s) suchen die bei der Lösung dieser Probleme helfen
+## Speicher Manuell Freigeben 
+Auch in Rust ist es möglich Speicherbereiche manuell freizugeben. Im Beispiel ![manual_free.rs](Beispiele_Speicherfehler/manual_free.rs) ist Rust Code zu finden, bei dem versucht wird auf ein Element eines Vektors zuzugreifen, welches bereits manuell gelöscht wurde. Dieses Problem wird zur Compile-Zeit nicht vom Rust-Compiler erkannt, führt jedoch beim ausführen des Programms zum Absturz.
 
-- Siehe Readme Repo Prof. Sulzmann
+
  
