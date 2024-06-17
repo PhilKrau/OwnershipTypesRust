@@ -70,10 +70,10 @@ Der Folgende Code kompiliert nicht, da der Rust-Compiler nicht selbständig erke
 ![Unreachable Code](https://github.com/PhilKrau/OwnershipTypesRust/assets/72097023/6eef900a-ebea-42fc-8964-9065b515aa17)
 
 ## Stack Overflow durch zyklische Referenzen
-Eine Möglichkeit einen Speicherfehler in Rust zu erzeugen, ist das verwenden zyklischer Referenzen. In dem Beispiel ![reference_cycles.rs](Beispiele_Speicherfehler/reference_cycles.rs) ist Code zu finden der mithilfe zyklischer Referenzen einen Stack-Overflow zur Laufzeit verursacht. In dem Beispiel werden zwei Nodes einer linked-List erzeugt, die auf die jeweils andere verweisen. Gibt man sich nun den Nachfolger des ersten Elements aus, so verweisen die beiden Objekte solange gegenseitig aufeinander, bis der Stack voll ist und das Programm abstürzt.
+Eine Möglichkeit einen Speicherfehler in Rust zu erzeugen, ist das verwenden zyklischer Referenzen. In dem Beispiel [reference_cycles.rs](Beispiele_Speicherfehler/reference_cycles.rs) ist Code zu finden der mithilfe zyklischer Referenzen einen Stack-Overflow zur Laufzeit verursacht. In dem Beispiel werden zwei Nodes einer linked-List erzeugt, die auf die jeweils andere verweisen. Gibt man sich nun den Nachfolger des ersten Elements aus, so verweisen die beiden Objekte solange gegenseitig aufeinander, bis der Stack voll ist und das Programm abstürzt.
 
 ## Speicher Manuell Freigeben 
-Auch in Rust ist es möglich Speicherbereiche manuell freizugeben. Im Beispiel ![manual_free.rs](Beispiele_Speicherfehler/manual_free.rs) ist Rust Code zu finden, bei dem versucht wird auf ein Element eines Vektors zuzugreifen, welches bereits manuell gelöscht wurde. Dieses Problem wird zur Compile-Zeit nicht vom Rust-Compiler erkannt, führt jedoch beim ausführen des Programms zum Absturz.
+Auch in Rust ist es möglich Speicherbereiche manuell freizugeben. Im Beispiel [manual_free.rs](Beispiele_Speicherfehler/manual_free.rs) ist Rust Code zu finden, bei dem versucht wird auf ein Element eines Vektors zuzugreifen, welches bereits manuell gelöscht wurde. Dieses Problem wird zur Compile-Zeit nicht vom Rust-Compiler erkannt, führt jedoch beim ausführen des Programms zum Absturz.
 
 
  
